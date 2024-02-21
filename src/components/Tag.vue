@@ -1,5 +1,4 @@
 <script lang="ts">
-
 export default {
     props: {
         texto: { type: String, required: true },
