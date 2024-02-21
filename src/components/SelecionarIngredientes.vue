@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-    <div class="selecionar-ingredientes">
+    <section class="selecionar-ingredientes">
         <h1 class="cabecalho titulo-ingredientes">Ingredientes</h1>
 
         <p class="paragrafo-lg instrucoes">
@@ -33,8 +33,7 @@ export default {
             *Atenção: consideramos que você tem em casa sal, pimenta e agua.
         </p>
 
-
-    </div>
+    </section>
 </template>
 
 
