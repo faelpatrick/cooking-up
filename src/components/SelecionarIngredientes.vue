@@ -1,6 +1,6 @@
 <script lang="ts">
 import { obterCategorias } from '@/http/index';
-import type { ICategoria } from '@/interfaces/ICategoria';
+import type ICategoria  from '@/interfaces/ICategoria';
 import CardCategoria from './CardCategoria.vue';
 import BotaoPrincipal from './BotaoPrincipal.vue';
 
@@ -31,7 +31,7 @@ export default {
             <li v-for="categoria in categorias" :key="categoria.nome">
                 <CardCategoria
                 :categoria="categoria"
-                @adicionarIngrediente="$emit('adicionarIngrediente', $event)"
+                @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
                 @remover-ingrediente="$emit('removerIngrediente', $event)" />
             </li>
         </ul>
