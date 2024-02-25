@@ -1,10 +1,16 @@
 <script lang="ts">
 import { obterReceitas } from '@/http';
+import { itensDeLista1EmLista2 } from '@/operacoes/listas';
 import type IReceita from '@/interfaces/IReceita';
+import type { PropType } from 'vue';
 import BotaoPrincipal from './BotaoPrincipal.vue';
 import CardReceita from './CardReceita.vue';
 
 export default {
+    props: {
+        ingredientes: { type: Array as PropType<string[]>, required: true }
+    },
+
     components: { BotaoPrincipal, CardReceita },
     data() {
         return {
@@ -13,7 +19,12 @@ export default {
     },
     async created() {
         const receitas = await obterReceitas();
-        this.receitasEncontradas = receitas.slice(0, 8);
+
+        this.receitasEncontradas = receitas
+            .filter((receita) => {
+                const possoFazerReceita = itensDeLista1EmLista2(receita.ingredientes, this.ingredientes)
+                return possoFazerReceita
+            })
     },
     emits: ['editarReceitas']
 
@@ -45,7 +56,7 @@ export default {
                 Ops, não encontramos resultados para sua combinação. Vamos tentar de novo?
             </p>
 
-            <img src="../assets/imagens/sem-receitas.png"
+            <img src="../assets/images/sem-receitas.png"
                 alt="Desenho de um ovo quebrado. A gema tem um rosto com uma expressão triste.">
         </div>
 
